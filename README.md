@@ -2,7 +2,7 @@
 
 This module allows you to create a week based calendar for your reservations.
 
-For seasonal resorts, this module creates a list of weeks for 5 previous years and 10 future years.  This weekly calendar is used to pick future dates based on the current reservation.
+For seasonal resorts, this module calculates week numbers and reservation dates based on a reference day (Memorial Day by default). The calendar is lightweight and uses pure Python with no external dependencies.
 
 Inspired by Fun Valley Family Resort in South Fork, Colorado, USA.
 
@@ -21,15 +21,15 @@ from reservation_calendar import ReservationCalendar
 
 calendar = ReservationCalendar()
 
-# Get FVRC week number and weekday number for a given date
+# Get week number and weekday number for a given date
 date = datetime(2023, 6, 9)
-fvrc_week_number, fvrc_weekday_number = calendar.get_fvrc(date)
-print("FVRC week number:", fvrc_week_number)
-print("FVRC weekday number:", fvrc_weekday_number)
+week_number, weekday_number = calendar.get_week_info(date)
+print("Week number:", week_number)
+print("Weekday number:", weekday_number)
 
-# Get FVRC day name for a given date
-fvrc_day_name = calendar.get_fvrc_day(date)
-print("FVRC day name:", fvrc_day_name)
+# Get day name for a given date
+day_name = calendar.get_day_name(date)
+print("Day name:", day_name)
 
 
 print(f"Future Reservation Dates for {date}:")
@@ -40,9 +40,9 @@ for year in range(2024, 2035):
 ### Output
 
 ```text
-FVRC week number: 2
-FVRC weekday number: 5
-FVRC day name: Friday
+Week number: 2
+Weekday number: 5
+Day name: Friday
 Future Reservation Dates for 2023-06-09:
 2024-06-07
 2025-06-06
